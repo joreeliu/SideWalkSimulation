@@ -9,6 +9,7 @@ class Person(GameObject):
         self.__increment = [2, 2]
         self.__direction = [1, 1]
         self.__inMotion = 0
+        self.__sdistance = GameConstants.SOCIAL_DISTANCE
 
         super().__init__(position, GameConstants.PERSON_SIZE, sprite)
 

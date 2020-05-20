@@ -21,7 +21,7 @@ class Breakout:
         self.screen = pygame.display.set_mode(GameConstants.SCREEN_SIZE,
                                               pygame.DOUBLEBUF, 32)
 
-        self.__People = [Person((0, 0), pygame.transform.scale(pygame.image.load(GameConstants.SPRITE_PERSON), GameConstants.PERSON_SIZE), self)]
+        self.__People = [Person((0, 0), load_image(GameConstants.SPRITE_PERSON, GameConstants.PERSON_SIZE), self)]
 
         pygame.mouse.set_visible(0)
 

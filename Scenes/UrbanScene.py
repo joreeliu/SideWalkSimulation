@@ -20,6 +20,11 @@ class UrbanScene(Scene):
         game = self.getGame()
 
         for person in game.getPeople():
+
+            for block in game.getLevel().getBlocks():
+                if person.intersects(block):
+                    break
+
             person.updatePosition()
 
             game.screen.blit(person.getSprite(), person.getPosition())
