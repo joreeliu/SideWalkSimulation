@@ -27,7 +27,7 @@ class Level:
         for line in fileinput.input(os.path.join("Assets", "Levels", "level" + str(level) + ".dat")):
             for currentBlock in line:
                 if currentBlock == '1':
-                    block = Block([x, y], pygame.image.load(GameConstants.SPRITE_BLOCK), self.__game)
+                    block = Block([x, y], pygame.transform.scale(pygame.image.load(GameConstants.SPRITE_BLOCK), GameConstants.BLOCK_SIZE), self.__game)
                     self.__blocks.append(block)
 
 
