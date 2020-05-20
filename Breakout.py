@@ -17,6 +17,7 @@ class Breakout:
         pygame.display.set_caption("Urban Simulation")
 
         self.__clock = pygame.time.Clock()
+        self.__clock.tick(40)
 
         self.screen = pygame.display.set_mode(GameConstants.SCREEN_SIZE,
                                               pygame.DOUBLEBUF, 32)

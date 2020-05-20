@@ -1,6 +1,7 @@
 from Shared import *
 import pygame
-
+from Blocks import Block
+import random
 
 class Person(GameObject):
     def __init__(self, position, sprite, game):
@@ -12,6 +13,7 @@ class Person(GameObject):
         self.__sdistance = GameConstants.SOCIAL_DISTANCE
 
         super().__init__(position, GameConstants.PERSON_SIZE, sprite)
+        self.setPosition([400, 250])
 
 
     def setSpeed(self, newSpeed):
@@ -34,4 +36,15 @@ class Person(GameObject):
         pass
 
     def updatePosition(self):
-        self.setPosition(pygame.mouse.get_pos())
+        #self.setPosition(pygame.mouse.get_pos())
+        pass
+
+    def move(self):
+        self.setSpeed(1)
+        speed = self.getSpeed()
+        current_pos = self.getPosition()
+        direction = random.choice([[0, 1], [0, -1], [1, 0], [-1, 0]])
+        self.setPosition([current_pos[0] + direction[0] * speed, current_pos[1] + direction[1]])
+
+    def stop(self):
+        self.setPosition([100, 100])

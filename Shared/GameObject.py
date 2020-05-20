@@ -27,9 +27,11 @@ class GameObject:
         otherSize = other.getSize()
 
         if self.__position[1] >= otherPosition[1] and self.__position[1] <= otherPosition[1] + otherSize[1]:
+            ##print("intersect y!")
             return 1
         if (self.__position[1] + self.__size[1]) >= otherPosition[1] and (
                 self.__position[1] + self.__size[1] <= otherPosition[1] + otherSize[1]):
+            ##print("intersect y!")
             return 1
 
     def __intersectsX(self, other):
@@ -37,12 +39,15 @@ class GameObject:
         otherSize = other.getSize()
 
         if self.__position[0] >= otherPosition[0] and self.__position[0] <= otherPosition[0] + otherSize[0]:
+            ##print("intersect x!")
             return 1
+
         if (self.__position[0] + self.__size[0]) >= otherPosition[0] and (
                 self.__position[0] + self.__size[0] <= otherPosition[0] + otherSize[0]):
             return 1
 
     def intersects(self, other):
         if self.__intersectsX(other) and self.__intersectsX(other):
+            print("intersect!")
             return 1
         return 0

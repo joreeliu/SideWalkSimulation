@@ -22,10 +22,21 @@ class UrbanScene(Scene):
         for person in game.getPeople():
 
             for block in game.getLevel().getBlocks():
-                if person.intersects(block):
+
+                if person.intersects(block) == 0 and \
+                        (person.getPosition()[0] >= 0 and person.getPosition()[0] < 700) \
+                        and (person.getPosition()[1] >= 0 and person.getPosition()[1] < 600):
+                    ##stop_position = person.getPosition()
+                    ##print("intersect at" + str(stop_position))
+                    ##break
+                    person.move()
+                else:
+                    while person.intersects(block) or \
+                            (person.getPosition()[0] < 0 or person.getPosition()[0] >= 800) or\
+                            (person.getPosition()[1] < 0 or person.getPosition()[1] >= 600):
+                        person.move()
                     break
 
-            person.updatePosition()
 
             game.screen.blit(person.getSprite(), person.getPosition())
 
