@@ -16,5 +16,8 @@ class GameObject:
     def getSize(self):
         return self.__size
 
+    def getSprite(self):
+        return self.__sprite
+
     def intersects(self, other):
         pass

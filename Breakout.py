@@ -11,7 +11,7 @@ class Breakout:
     def __init__(self):
         self.__level = Level(self)
         self.__level.load(0)
-        self.__People = [Person((0, 0), 0, self)]
+        self.__People = [Person((0, 0), pygame.image.load(GameConstants.SPRITE_PERSON), self)]
 
         pygame.init()
         pygame.mixer.init()
@@ -46,13 +46,18 @@ class Breakout:
             pygame.display.update()
 
     def changeScene(self, scene):
-        pass
+        self.__currentScene = scene
 
     def getPeople(self):
-        pass
+        return self.__People
 
     def playSound(self, soundClip):
-        pass
+        sound = self.__sounds[soundClip]
+        sound.stop()
+        sound.play()
+
+    def getLevel(self):
+        return self.__level
 
     def reset(self):
         pass

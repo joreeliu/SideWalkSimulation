@@ -14,3 +14,15 @@ class UrbanScene(Scene):
             if event.type == pygame.QUIT:
                 exit()
 
+    def render(self):
+        super().render()
+
+        game = self.getGame()
+
+        for person in game.getPeople():
+            person.updatePosition()
+
+            game.screen.blit(person.getSprite(), person.getPosition())
+
+        for block in game.getLevel().getBlocks():
+            game.screen.blit(block.getSprite(), block.getPosition())

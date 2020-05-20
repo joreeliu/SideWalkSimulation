@@ -1,3 +1,9 @@
+import os
+import fileinput
+from Blocks import *
+from Shared import *
+import pygame
+
 
 class Level:
 
@@ -13,4 +19,19 @@ class Level:
         pass
 
     def load(self, level):
-        pass
+        self.__currentLevel = level
+        self.__blocks = []
+
+        x, y = 0, 0
+
+        for line in fileinput.input(os.path.join("Assets", "Levels", "level" + str(level) + ".dat")):
+            for currentBlock in line:
+                if currentBlock == '1':
+                    block = Block([x, y], pygame.image.load(GameConstants.SPRITE_BLOCK), self.__game)
+                    self.__blocks.append(block)
+
+
+                x += GameConstants.BLOCK_SIZE[0]
+
+            x = 0
+            y += GameConstants.BLOCK_SIZE[1]

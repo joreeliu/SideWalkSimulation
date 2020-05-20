@@ -1,4 +1,5 @@
 from Shared import *
+import pygame
 
 
 class Person(GameObject):
@@ -32,4 +33,4 @@ class Person(GameObject):
         pass
 
     def updatePosition(self):
-        pass
+        self.setPosition(pygame.mouse.get_pos())
