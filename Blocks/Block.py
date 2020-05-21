@@ -4,12 +4,7 @@ from Shared import GameConstants
 
 class Block(GameObject):
 
-    def __init__(self, position, sprite, game):
-        self.__game = game
+    def __init__(self, position, surface):
         self.__sdistance = 0
 
-        super().__init__(position, GameConstants.BLOCK_SIZE, sprite)
-
-
-    def getGame(self):
-        return self.__game
+        super().__init__(position, GameConstants.BLOCK_SIZE, surface)

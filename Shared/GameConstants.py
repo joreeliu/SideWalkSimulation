@@ -10,3 +10,5 @@ class GameConstants:
     SPRITE_BLOCK = os.path.join("Assets", "iron.png")
 
     SOCIAL_DISTANCE = 2
+    PERSON_SPEED = 10
+    TICK = 50

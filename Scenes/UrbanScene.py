@@ -18,16 +18,16 @@ class UrbanScene(Scene):
         super().render()
 
         game = self.getGame()
+        people = game.getPeople()
 
         for person in game.getPeople():
+            people.remove(person)
+            person.move(people, game.getLevel().getBlocks())
+            people.add(person)
 
-            for block in game.getLevel().getBlocks():
-                if person.intersects(block):
-                    break
+        for person in people:
 
-            person.updatePosition()
-
-            game.screen.blit(person.getSprite(), person.getPosition())
+            game.screen.blit(person.getSurface(), person.getPosition())
 
         for block in game.getLevel().getBlocks():
-            game.screen.blit(block.getSprite(), block.getPosition())
+            game.screen.blit(block.getSurface(), block.getPosition())

@@ -9,7 +9,7 @@ class Level:
 
     def __init__(self, game):
         self.__game = game
-        self.__blocks = []
+        self.__blocks = pygame.sprite.Group()
         self.__currentLevel = 0
 
     def getBlocks(self):
@@ -20,15 +20,14 @@ class Level:
 
     def load(self, level):
         self.__currentLevel = level
-        self.__blocks = []
 
         x, y = 0, 0
 
         for line in fileinput.input(os.path.join("Assets", "Levels", "level" + str(level) + ".dat")):
             for currentBlock in line:
                 if currentBlock == '1':
-                    block = Block([x, y], load_image(GameConstants.SPRITE_BLOCK, GameConstants.BLOCK_SIZE), self.__game)
-                    self.__blocks.append(block)
+                    block = Block([x, y], load_image(GameConstants.SPRITE_BLOCK, GameConstants.BLOCK_SIZE))
+                    self.__blocks.add(block)
 
                 x += GameConstants.BLOCK_SIZE[0]
 

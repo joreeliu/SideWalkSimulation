@@ -21,9 +21,8 @@ class Breakout:
         self.screen = pygame.display.set_mode(GameConstants.SCREEN_SIZE,
                                               pygame.DOUBLEBUF, 32)
 
-        self.__People = [Person((0, 0), load_image(GameConstants.SPRITE_PERSON, GameConstants.PERSON_SIZE), self)]
-
-        pygame.mouse.set_visible(0)
+        self.__People = pygame.sprite.Group()
+        self.__People.add(Person((0, 5), load_image(GameConstants.SPRITE_PERSON, GameConstants.PERSON_SIZE)))
 
         self.__scenes = (
             UrbanScene(self),
@@ -36,7 +35,7 @@ class Breakout:
 
     def start(self):
         while 1:
-            self.__clock.tick(100)
+            self.__clock.tick(GameConstants.TICK)
 
             self.screen.fill((0, 0, 0))
 
