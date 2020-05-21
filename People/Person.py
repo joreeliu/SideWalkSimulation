@@ -4,7 +4,9 @@ import random
 
 
 class Person(GameObject):
-    def __init__(self, position, surface):
+    def __init__(self, position, surface, game):
+
+        self.__game = game
 
         self.__inMotion = 0
         self.__sdistance = GameConstants.SOCIAL_DISTANCE
@@ -40,6 +42,7 @@ class Person(GameObject):
         self.dir_x, self.dir_y = random.choice(([0, 1], [0, -1], [1, 0], [-1, 0]))
         self.rect = self.rect.move(self.__speed * self.dir_x, self.__speed * self.dir_y)
 
+
         if self.rect.top <= GameConstants.PERSON_SPEED:
             self.rect = self.rect.move(self.__speed * 0, self.__speed * 1)
             self.dir_x, self.dir_y = random.choice(([0, 1], [0, -1], [1, 0], [-1, 0]))
@@ -55,8 +58,5 @@ class Person(GameObject):
 
         if pygame.sprite.spritecollide(self, peopleGroup, False, None) \
                 or pygame.sprite.spritecollide(self, blockGroup, False, None):
-            print('!!!collide')
             self.rect = self.rect.move(self.__speed * -self.dir_x, self.__speed * -self.dir_y)
             self.dir_x, self.dir_y = random.choice(([0, 1], [0, -1], [1, 0], [-1, 0]))
-
-        print(self.rect)

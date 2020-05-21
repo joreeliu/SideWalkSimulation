@@ -5,6 +5,7 @@ from Shared import *
 from People import *
 from Scenes import *
 from Level import Level
+import random
 
 
 class Breakout:
@@ -21,8 +22,13 @@ class Breakout:
         self.screen = pygame.display.set_mode(GameConstants.SCREEN_SIZE,
                                               pygame.DOUBLEBUF, 32)
 
+        self.screen = pygame.display.set_mode(GameConstants.SCREEN_SIZE)
+
         self.__People = pygame.sprite.Group()
-        self.__People.add(Person((0, 5), load_image(GameConstants.SPRITE_PERSON, GameConstants.PERSON_SIZE)))
+
+        for i in range(10):
+            self.__People.add(
+                Person((random.randint(1, GameConstants.SCREEN_SIZE[0]), random.randint(1, GameConstants.SCREEN_SIZE[0])), load_image(GameConstants.SPRITE_PERSON, GameConstants.PERSON_SIZE), self))
 
         self.__scenes = (
             UrbanScene(self),
@@ -34,7 +40,9 @@ class Breakout:
 
 
     def start(self):
+
         while 1:
+
             self.__clock.tick(GameConstants.TICK)
             self.screen.fill((0, 0, 0))
 
@@ -43,6 +51,7 @@ class Breakout:
             currentScene.render()
 
             pygame.display.update()
+
 
     def changeScene(self, scene):
         self.__currentScene = scene

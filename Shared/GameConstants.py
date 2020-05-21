@@ -2,7 +2,7 @@ import os
 
 
 class GameConstants:
-    SCREEN_SIZE = [1000, 800]
+    SCREEN_SIZE = [800, 800]
     PERSON_SIZE = [5, 5]
     BLOCK_SIZE = [50, 50]
 
