@@ -36,7 +36,6 @@ class Breakout:
     def start(self):
         while 1:
             self.__clock.tick(GameConstants.TICK)
-
             self.screen.fill((0, 0, 0))
 
             currentScene = self.__scenes[self.__currentScene]
@@ -62,5 +61,5 @@ class Breakout:
     def reset(self):
         pass
 
-
-Breakout().start()
+if __name__ == '__main__':
+    Breakout().start()

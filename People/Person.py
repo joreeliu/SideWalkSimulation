@@ -9,7 +9,7 @@ class Person(GameObject):
         self.__inMotion = 0
         self.__sdistance = GameConstants.SOCIAL_DISTANCE
         self.__speed = GameConstants.PERSON_SPEED
-        self.dir_x, self.dir_y = 0, -1
+        self.dir_x, self.dir_y = 0, 1
 
         super().__init__(position, GameConstants.PERSON_SIZE, surface)
 
@@ -37,23 +37,26 @@ class Person(GameObject):
         pass
 
     def move(self, peopleGroup, blockGroup):
-
+        self.dir_x, self.dir_y = random.choice(([0, 1], [0, -1], [1, 0], [-1, 0]))
         self.rect = self.rect.move(self.__speed * self.dir_x, self.__speed * self.dir_y)
 
-        if self.rect.top < self.getSize()[1]:
+        if self.rect.top <= GameConstants.PERSON_SPEED:
             self.rect = self.rect.move(self.__speed * 0, self.__speed * 1)
             self.dir_x, self.dir_y = random.choice(([0, 1], [0, -1], [1, 0], [-1, 0]))
-        elif self.rect.bottom > GameConstants.SCREEN_SIZE[1] - self.getSize()[1]:
+        elif self.rect.bottom >= GameConstants.SCREEN_SIZE[1] - GameConstants.PERSON_SPEED:
             self.rect = self.rect.move(self.__speed * 0, self.__speed * -1)
             self.dir_x, self.dir_y = random.choice(([0, 1], [0, -1], [1, 0], [-1, 0]))
-        elif self.rect.left < self.getSize()[0]:
+        elif self.rect.left <= GameConstants.PERSON_SPEED:
             self.rect = self.rect.move(self.__speed * 1, self.__speed * 0)
             self.dir_x, self.dir_y = random.choice(([0, 1], [0, -1], [1, 0], [-1, 0]))
-        elif self.rect.right > GameConstants.SCREEN_SIZE[0] - self.getSize()[0]:
+        elif self.rect.right >= GameConstants.SCREEN_SIZE[0] - GameConstants.PERSON_SPEED:
             self.rect = self.rect.move(self.__speed * -1, self.__speed * 0)
             self.dir_x, self.dir_y = random.choice(([0, 1], [0, -1], [1, 0], [-1, 0]))
 
         if pygame.sprite.spritecollide(self, peopleGroup, False, None) \
                 or pygame.sprite.spritecollide(self, blockGroup, False, None):
+            print('!!!collide')
             self.rect = self.rect.move(self.__speed * -self.dir_x, self.__speed * -self.dir_y)
             self.dir_x, self.dir_y = random.choice(([0, 1], [0, -1], [1, 0], [-1, 0]))
+
+        print(self.rect)
